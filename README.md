@@ -33,3 +33,9 @@ typescript-redux with parcel
   }
 }
 ```
+
+## redux 설치
+
+```shell
+$ yarn add redux
+```
