@@ -28,7 +28,10 @@ typescript-redux with parcel
   "include": ["src"],
   "exclude": ["node_modules"],
   "compilerOptions": {
+    "module": "commonjs",
     "noImplicitAny": true,
+    "removeComments": true,
+    "sourceMap": true,
     "target": "es5"
   }
 }

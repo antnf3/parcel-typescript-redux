@@ -6,7 +6,7 @@
   "author": "antnf3 <antnf3@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "parcel src/index.html --target browser --port 3000 --open"
+    "start": "parcel src/counter.html --target browser --port 3000 --open"
   },
   "devDependencies": {
     "typescript": "^3.8.3"
