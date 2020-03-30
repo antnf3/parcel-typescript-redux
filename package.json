@@ -1,0 +1,8 @@
+{
+  "name": "parcel-typescript-redux",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/antnf3/parcel-typescript-redux.git",
+  "author": "antnf3 <antnf3@gmail.com>",
+  "license": "MIT"
+}
