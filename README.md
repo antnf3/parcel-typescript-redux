@@ -18,3 +18,18 @@ typescript-redux with parcel
 ```shell
 > yarn global add parcel-bundler
 ```
+
+## parcel에서 typescript 타입체크 할 수 있도록 설정
+
+```shell
+> touch tsconfig.json
+
+{
+  "include": ["src"],
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "target": "es5"
+  }
+}
+```

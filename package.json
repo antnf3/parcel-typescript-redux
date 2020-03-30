@@ -4,5 +4,12 @@
   "main": "index.js",
   "repository": "https://github.com/antnf3/parcel-typescript-redux.git",
   "author": "antnf3 <antnf3@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "start": "parcel src/index.html --target browser --port 3000 --open"
+  },
+  "devDependencies": {
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {}
 }
