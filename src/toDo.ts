@@ -2,37 +2,37 @@ import { createStore } from "redux";
 import {
   ADD,
   DELETE,
-  todoActionType,
-  addActionInterface,
-  deleteActionInterface,
-  ToDo
+  addActionProps,
+  deleteActionProps,
+  stateProps,
+  actionTypes
 } from "./types";
 const form = document.querySelector("form");
 const input = document.querySelector("input");
 const ul = document.querySelector("ul");
 
-const addAction = (text: string): addActionInterface => {
+const addAction = (text: string): addActionProps => {
   return {
     type: ADD,
     text
   };
 };
 
-const deleteAction = (id: number): deleteActionInterface => {
+const deleteAction = (id: number): deleteActionProps => {
   return {
     type: DELETE,
     id
   };
 };
 
-const initialStateType: ToDo[] = [];
+const initialStateProps: stateProps[] = [];
 
-const reducer = (state = initialStateType, action: todoActionType) => {
+const reducer = (state = initialStateProps, action: actionTypes) => {
   switch (action.type) {
     case ADD:
       return [{ text: action.text, id: Date.now() }, ...state];
     case DELETE:
-      return [...state.filter(todo => todo.id !== action.id)];
+      return state.filter(toDo => toDo.id !== action.id);
     default:
       return state;
   }
@@ -40,32 +40,41 @@ const reducer = (state = initialStateType, action: todoActionType) => {
 
 const store = createStore(reducer);
 
-const deleteTodo = (e: any) => {
-  const id = parseInt(e.currentTarget.parentElement.id, 10);
-  store.dispatch(deleteAction(id));
+const onChange = () => {
+  console.log(store.getState());
 };
+store.subscribe(onChange);
 
-const updateText = () => {
+const paintTodo = () => {
   ul.innerHTML = "";
   const toDos = store.getState();
-  toDos.forEach(todo => {
+  toDos.forEach(toDo => {
     const li = document.createElement("li");
     const btn = document.createElement("button");
-    li.innerText = todo.text;
-    li.id = todo.id.toString();
+    li.innerText = toDo.text;
+    li.id = toDo.id.toString();
     btn.innerText = "DEL";
-    btn.addEventListener("click", deleteTodo);
+    btn.addEventListener("click", deleteToDo);
     li.appendChild(btn);
     ul.appendChild(li);
   });
 };
-store.subscribe(updateText);
+store.subscribe(paintTodo);
 
-const onSubmit = (e: any) => {
+const deleteToDo = (e: MouseEvent) => {
+  const id = parseInt(
+    (<HTMLButtonElement>e.currentTarget).parentElement.id,
+    10
+  );
+  store.dispatch(deleteAction(id));
+};
+
+const addToDo = (e: Event) => {
   e.preventDefault();
   const text = input.value;
   store.dispatch(addAction(text));
   input.value = "";
+  input.focus();
 };
 
-form.addEventListener("submit", onSubmit);
+form.addEventListener("submit", addToDo);

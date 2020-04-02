@@ -1,19 +1,19 @@
 export const ADD = "ADD";
 export const DELETE = "DELETE";
 
-export interface ToDo {
+export interface stateProps {
   text: string;
   id: number;
 }
 
-export interface addActionInterface {
+export interface addActionProps {
   type: typeof ADD;
   text: string;
 }
 
-export interface deleteActionInterface {
+export interface deleteActionProps {
   type: typeof DELETE;
   id: number;
 }
 
-export type todoActionType = addActionInterface | deleteActionInterface;
+export type actionTypes = addActionProps | deleteActionProps;
