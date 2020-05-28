@@ -3,15 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TODO LIST</title>
+    <title>TO Do</title>
+    <link rel="stylesheet" href="./style/toDo.scss" />
   </head>
   <body>
-    <h1>ToDo LIST</h1>
-    <form>
-      <input type="text" />
-      <button>ADD</button>
-    </form>
-    <ul></ul>
+    <section>
+      <h1>TODO LIST</h1>
+      <header>
+        <input class="inputbox" type="text" id="inputBox" />
+        <button class="basic-button" id="btnAdd">추가</button>
+      </header>
+      <main>
+        <ul></ul>
+      </main>
+    </section>
     <script src="./toDo.ts"></script>
   </body>
 </html>

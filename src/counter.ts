@@ -1,47 +1,76 @@
+import "babel-polyfill";
 import { createStore } from "redux";
 
-const add = document.getElementById("add");
-const minus = document.getElementById("minus");
+const add = document.querySelector("#add");
+const minus = document.querySelector("#minus");
 const number = document.querySelector("span");
 
-let count = 0;
-number.innerText = count.toString();
+let num = 0;
+number.innerText = `${num}`;
 
 const ADD = "ADD";
-const DELETE = "DELETE";
+const MINUS = "MINUS";
 
-interface addActionInterface {
-  type: typeof ADD;
-}
-interface deleteActionInterface {
-  type: typeof DELETE;
-}
-type countActionType = addActionInterface | deleteActionInterface;
+// 1. 기존방식
+// interface ActionAdd {
+//   type: typeof ADD;
+//   payload: number;
+// }
+// interface ActionMinus {
+//   type: typeof MINUS;
+//   payload: number;
+// }
 
-const reducer = (state = 0, action: countActionType) => {
+// const addAction = (num: number): ActionAdd => {
+//   return { type: ADD, payload: num };
+// };
+// const minusAction = (num: number): ActionMinus => {
+//   return { type: MINUS, payload: num };
+// };
+
+// type Actions = ActionAdd | ActionMinus;
+
+// 2. const assertion, ReturnType을 사용하여 중복제거
+// *** const assertion - type 속성을 타입추론 시 활용할 수 있게 하기 위함
+const addAction = (num: number) => {
+  return <const>{ type: ADD, payload: num };
+};
+const minusAction = (num: number) => {
+  return <const>{ type: MINUS, payload: num };
+};
+
+//interface 대신 ReturnType을 활용해 중복 제거
+type Actions = ReturnType<typeof addAction> | ReturnType<typeof minusAction>;
+
+const reducer = (state = 0, action: Actions) => {
   switch (action.type) {
     case ADD:
-      return state + 1;
-    case DELETE:
-      return state - 1;
+      return state + action.payload;
+    case MINUS:
+      return state - action.payload;
     default:
       return state;
   }
 };
+
 const store = createStore(reducer);
 
 const onChange = () => {
-  const count = store.getState();
-  number.innerText = count.toString();
+  number.innerText = `${store.getState()}`;
 };
 
 store.subscribe(onChange);
 
-const handleAdd = () => {
-  store.dispatch({ type: ADD });
+const handleDispatch = (acs: Actions) => {
+  store.dispatch(acs);
 };
+
+const handleAdd = () => {
+  handleDispatch(addAction(2));
+};
+
 const handleMinus = () => {
-  store.dispatch({ type: DELETE });
+  handleDispatch(minusAction(1));
 };
 
 add.addEventListener("click", handleAdd);

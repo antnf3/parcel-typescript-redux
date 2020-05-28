@@ -6,12 +6,17 @@
   "author": "antnf3 <antnf3@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "parcel src/toDo.html --target browser --port 3000 --open"
+    "start": "parcel src/toDo.html --target browser --port 3000 --open",
+    "build": "parcel build src/toDo.html -d build --public-url ./"
   },
   "devDependencies": {
+    "autoprefixer": "^9.8.0",
+    "cssnano": "^4.1.10",
+    "sass": "^1.26.5",
     "typescript": "^3.8.3"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "redux": "^4.0.5"
   }
 }

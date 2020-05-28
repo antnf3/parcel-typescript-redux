@@ -1,0 +1,74 @@
+:root {
+  --section-background-color: #e1e6e6;
+  --input-border-color: #828282;
+  --button-background-color: #69db7c;
+  --button-color: #1864ab;
+  --common-height: 1.4rem;
+  --common-width: 50rem;
+}
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--section-background-color);
+  width: var(--common-width);
+  height: 8rem;
+}
+.inputbox {
+  border: none;
+  width: 15rem;
+  height: var(--common-height);
+  border-bottom: 1px solid var(--input-border-color);
+}
+.button {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: 3rem;
+  height: var(--common-height);
+  border-radius: 4px;
+  cursor: pointer;
+}
+.basic-button {
+  @extend .button;
+  background-color: var(--button-background-color);
+  color: var(--button-color);
+}
+
+.del-button {
+  @extend .button;
+  background-color: transparent;
+  color: var(--section-background-color);
+  width: 1rem;
+  margin-left: 0.5rem;
+}
+
+.compolete-button {
+  @extend .button;
+  background-color: transparent;
+  color: yellow;
+  width: 1rem;
+  margin-left: 1rem;
+  font-weight: 600;
+}
+main {
+  background-color: var(--button-background-color);
+  color: var(--button-color);
+  margin-top: 2rem;
+  width: var(--common-width);
+}
+li {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.todo-complete {
+  text-decoration: line-through;
+}
